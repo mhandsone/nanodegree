@@ -1,16 +1,19 @@
 /* BIO */
 	var bio = {
-		"name": "myName",
-		"role": "Web Developer",
-		"contacts": {
-			"mobile"   : "+3932974...",
-			"email"    : "...@...com",
-			"github"   : "qrob",
-			"location" : "Rome"
+		"name"		: "Nicola Tesla",
+		"role"		: "Engineering",
+		"contacts"	: {
+			"generic"	: {"html": HTMLcontactGeneric,  "value": ""},
+			"mobile"	: {"html": HTMLmobile, 	 		"value": ""},
+			"email"		: {"html": HTMLemail, 	 		"value": "nikola.tesla286@gmail.com"},
+			"twitter"	: {"html": HTMLtwitter,  		"value": ""},
+			"github"	: {"html": HTMLgithub, 	 		"value": ""},
+			"blog"		: {"html": HTMLblog, 	 		"value": "http://en.wikipedia.org/wiki/Nikola_Tesla"},
+			"location"	: {"html": HTMLlocation, 		"value": "Serbia, Belgrade"}
 		},
 		"welcomeMsg": "Work it harder, make it better Do it faster, makes us stronger More than ever, hour after hour Work is never over!",
-		"skills": ["aaa","bbb","ccc","ddd"],
-		"bioPic": "images/197x148.gif"
+		"skills"	: ["inventor","electrical engineer","mechanical engineer","futurist", "polyglot"],
+		"bioPic"	: "images/nikola.jpg"
 	}
 
 	bio.display = function(){
@@ -18,11 +21,10 @@
 		var headerRole = HTMLheaderRole.replace("%data%", bio.role);
 		$('#header').prepend(headerName + headerRole);
 
-		var mobile    = HTMLmobile.replace("%data%", bio.contacts.mobile);
-		var email     = HTMLemail.replace("%data%", bio.contacts.email);
-		var github    = HTMLgithub.replace("%data%", bio.contacts.github);
-		var _location = HTMLlocation.replace("%data%", bio.contacts.location);
-		$('#topContacts, #footerContacts').append(mobile + email + github + _location);
+		$.each(bio.contacts, function(key, obj){
+			if(obj.value)
+				$('#topContacts, #footerContacts').append(obj.html.replace("%data%", obj.value));
+		});
 
 		var bioPic = HTMLbioPic.replace("%data%", bio.bioPic);
 		var welcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMsg);
@@ -38,25 +40,25 @@
 	var work = {
 		"jobs": [
 		{
-			"employer": "employer",
-			"title": "title",
-			"location": "Dublin",
-			"dates": "2013",
-			"description": "description"
+			"employer": "Continental Edison Company",
+			"title": "Engineer",
+			"location": "France, Paris",
+			"dates": "1882 - 1884",
+			"description": "Designing and making improvements to electrical equipment"
 		},
 		{
-			"employer": "aoksdo",
-			"title": "aposkd",
-			"location": "New York",
-			"dates": "2011",
-			"description": "asdasd asdasd asdsad"
+			"employer": "Edison Machine Works",
+			"title": "Engineer",
+			"location": "US, New York",
+			"dates": "June 1884",
+			"description": "My work for Edison began with simple electrical engineering and quickly progressed to solving more difficult problems. I was offered the task of completely redesigning the Edison Company's direct current generators. I redesigned Edison's inefficient motor and generators, making an improvement in both service and economy."
 		},
 		{
-			"employer": "fsagfdg",
-			"title": "fgfgd",
-			"location": "Mosca",
-			"dates": "2010",
-			"description": "asdfasdga"
+			"employer": "Westinghouse Electric & Manufacturing Company",
+			"title": "Consultant ",
+			"location": "US, Pittsburgh",
+			"dates": "1888",
+			"description": "I helped to create an alternating current system to power the city's streetcars."
 		}
 	]};
 
@@ -70,7 +72,7 @@
 			var dates 		= HTMLworkDates.replace("%data%", work.jobs[index].dates);
 			var description = HTMLworkDescription.replace("%data%", work.jobs[index].description);
 
-			$('.work-entry:last').append(employer + title + dates + description);
+			$('.work-entry:last').append(employer + title + _location + dates + description);
 		}	
 	};
 
@@ -78,22 +80,20 @@
 	var projects = {
 	  "projects": [
 			{
-				"title": "title",
-				"dates": "dates",
-				"description" : "description",
-				"image": "image"
+				"title": "Alternating Current",
+				"dates": "1890",
+				"description" : "I developed the concept of Alternating Currents; I modified it to give rise to more efficient high frequency alternating currents and then discovered the phenomenon of Wireless Electricity and all this as I always claimed were in perfect harmony with Mother Nature. - See more at: http://aniruddhafriend-samirsinh.com/wireless-electricity-part-1/",
+				"image1": "images/wireless-electricity.jpg",
+				"image2": "images/AC.png",
+				"image3": ""
 			},
 			{
-				"title": "asd",
-				"dates": "dfdf",
-				"description" : "asfs",
-				"image": "sfsfsf"
-			},
-			{
-				"title": "asdasd",
-				"dates": "asdfdf",
-				"description" : "sdfdsf",
-				"image": "adasdsaf"
+				"title": "X-ray experimentation",
+				"dates": "1894",
+				"description" : "I began investigating on radiant energy of \"invisible\" kinds after I had noticed damaged film in my laboratory in previous experiments. I proceeded to do my own experiments in X-ray imaging, developing a high energy single terminal vacuum tube of my own design that had no target electrode and that worked from the output of the Tesla Coil. In my research, I devised several experimental setups to produce X-rays.",
+				"image1": "images/xray.jpg",
+				"image2": "",
+				"image3": ""
 			}
 	]};
 
@@ -103,9 +103,15 @@
 			var title 		= HTMLprojectTitle.replace("%data%", projects.projects[index].title);
 			var dates 		= HTMLprojectDates.replace("%data%", projects.projects[index].dates);
 			var description = HTMLprojectDescription.replace("%data%", projects.projects[index].description);
-			var image 		= HTMLprojectImage.replace("%data%", projects.projects[index].image);
+			//var image 		= HTMLprojectImage.replace("%data%", projects.projects[index].image);
 
-			$('.project-entry:last').append(title + dates + description + image);		
+			$('.project-entry:last').append(title + dates + description);
+			for(var i=1; i<=3; i++){
+				if("%data%", projects.projects[index]["image"+i]){
+					var image = HTMLprojectImage.replace("%data%", projects.projects[index]["image"+i]);
+					$('.project-entry:last').append(image);
+				}
+			}	
 		}
 	};
 
@@ -113,19 +119,19 @@
 	var education = {
 		"schools": [
 			{
-			"name"		: "schoolName",
-			"degree"	: "degree",
-			"dates"		: "dates",
-			"location" 	: "Sydney",
-			"major"		: "major"
+			"name"		: "Graz University of Technology",
+			"degree"	: "dropped out",
+			"dates"		: "1875-1877",
+			"location" 	: "Austria, Graz",
+			"major"		: "mathematics, physics, engineering"
 			}
 		],
 		"onlineCourses": [
 			{
-				"title"  : "title",
-				"school" : "school",
-				"dates"  : "dates",
-				"url" 	 : "url"
+				"title"  : "Intro to Computer Science",
+				"school" : "Udacity",
+				"dates"  : "2014",
+				"url" 	 : "https://www.udacity.com/course/cs101"
 			}
 		]
 	};
