@@ -2,11 +2,13 @@
 <html>
    <head>
       <meta charset="utf-8">
+      <!-- https://developer.mozilla.org/en/docs/Mozilla/Mobile/Viewport_meta_tag -->
+      <meta name="viewport" content="width=300, initial-scale=1">
       <title>My Portfolio</title>
       <link href='css/vendors/font-raleway.css' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" media="screen" type="text/css" href="js/vendors/colorpicker/css/colorpicker.css" />
       <link href="css/style.css" rel="stylesheet" type='text/css'/>
-      <link rel="stylesheet" media="screen and (max-width: 1024px)" href="css/simple-responsive.css" />
+      <link rel="stylesheet" media="(max-width: 1024px), (max-device-width: 1024px)" href="css/simple-responsive.css" />
       <script src="js/vendors/jquery.min.js"></script>
       <script src="js/vendors/jquery-ui.min.js"></script>
       <script type="text/javascript" src="js/vendors/colorpicker/js/colorpicker.js"></script>
@@ -14,8 +16,8 @@
    <body>
       <!-- wrapper -->
       <div id="wrapper" class="anm2 clr3">
-         <header>
-            <a id="cutom_logo" href="">
+         <header class="clr2">
+            <a name="logo" id="custom_logo" href="">
             <img alt="Custom logo R" src="img/custom_logo.svg" />
             </a>
             <div class="clr2">
@@ -32,11 +34,17 @@
                <div class="anm2 clr-tile clr1" data-clr="clr2"></div>
                <div class="anm2 clr-tile clr1" data-clr="clr3"></div>
             </div>
+            <div id="mobile-nav">
+               <a class="clr2 clr3" href="#logo">#Q</a>
+               <a class="clr2 clr3" href="#calendar">#1</a>
+               <a class="clr2 clr3" href="#notes">#2</a>
+               <a class="clr2 clr3" href="#wave">#3</a>
+            </div>
             <img src="img/center.jpg" alt="HTML code sample"/>
             <h2 class="clr1">Featured Work</h2>
             <!-- featured -->
             <div id="featured">
-               <a class="work anm2 clr2" href="">
+               <a name="calendar" class="work anm2 clr2" href="">
                   <img src="img/work1.jpg" alt="Calendar work"/>
                   <div class="description anm2 clr3">
                      <h4>D E S C R I P T I O N</h4>
@@ -44,17 +52,17 @@
                   </div>
                   <h3>CALENDAR</h3>
                </a>
-               <a class="work anm2 clr2" href="">
+               <a name="notes" class="work anm2 clr2" href="">
                   <img src="img/work2.jpg" alt="Notes work"/>
-                  <div class="description anm2">
+                  <div class="description anm2 clr3">
                      <h4>D E S C R I P T I O N</h4>
-                     <p>Slips of paper with peeling effect and a basic physics (you can also create animations, videos, texts, drawings and interactive elements within them). They're written in pure AS3 (no external library) and compiled with FlashDevelop</p>
+                     <p>Slips of paper with peeling effect and a basic physics (you can also create animations, videos, texts, drawings and interactive elements within them). They're written in pure AS3 (no external library) and compiled with FlashDevelop.</p>
                   </div>
                   <h3>NOTES</h3>
                </a>
-               <a class="work anm2 clr2" href="">
+               <a name="wave" class="work anm2 clr2" href="">
                   <img src="img/work3.jpg" alt="Wave work"/>
-                  <div class="description anm2">
+                  <div class="description anm2 clr3">
                      <h4>D E S C R I P T I O N</h4>
                      <p>An interactive 3d wave generator with a nice GUI. <br/> (JS, Three.js, WebGL, dat.gui)</p>
                   </div>
